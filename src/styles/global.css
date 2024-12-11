@@ -51,3 +51,16 @@ a:hover,
   color: #81b684;
   transition: color 0.3s ease;
 }
+
+/* logo */
+.cls-2 {
+  fill: #e7e7dc;
+}
+.cls-2:hover {
+  fill: #81b684;
+}
+
+/* navbar */
+.hidden {
+  display: none;
+}

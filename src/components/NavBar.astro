@@ -1,0 +1,21 @@
+---
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import "/src/styles/global.css";
+---
+
+<div class="flex w-full justify-between">
+  <Astronav closeOnClick>
+    <div class="block lg:hidden">
+      <MenuIcon style="color:#E7E7DD" class="w-12 h-8" />
+    </div>
+    <MenuItems class="hidden lg:flex">
+      <ul class="flex flex-col lg:flex-row lg:gap-5">
+        <li><a href="/menu">menu</a></li>
+        <li><a href="/menu">om os</a></li>
+        <li><a href="/menu">events</a></li>
+        <li><a href="/menu">kontakt</a></li>
+        <li></li>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</div>
