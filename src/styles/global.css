@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Globale styles */
+body {
+  @apply font-sans;
+  font-family: "Montserrat", sans-serif;
+  text-transform: lowercase;
+  font-weight: 100;
+  background-color: #232426;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-sans;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+
+a {
+  @apply text-white;
+  @apply font-sans;
+  font-family: "Montserrat", sans-serif;
+  text-transform: lowercase;
+}
+
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+.icon path {
+  fill: #e7e7dd;
+  transition: fill 0.3s ease;
+}
+
+.icon:hover path {
+  fill: #81b684;
+}
+
+a:hover,
+.nav-item:hover {
+  color: #81b684;
+  transition: color 0.3s ease;
+}
