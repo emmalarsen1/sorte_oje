@@ -5,12 +5,14 @@
 @tailwind utilities;
 
 /* Globale styles */
-body {
+body,
+p {
   @apply font-sans;
   font-family: "Montserrat", sans-serif;
   text-transform: lowercase;
   font-weight: 100;
   background-color: #232426;
+  color: #e7e7dd;
   margin: 0;
 }
 
@@ -33,9 +35,9 @@ a {
   text-transform: lowercase;
 }
 
-.container {
+/* .container {
   @apply max-w-6xl mx-auto px-4;
-}
+} */
 
 .icon path {
   fill: #e7e7dd;

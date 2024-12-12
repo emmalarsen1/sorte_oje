@@ -1,13 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SectionText from "../components/SectionText.astro";
-let title = "Sorte Øje";
+import TopSection from "../components/TopSection.astro";
+import BundFotoSection from "../components/BundFotoSection.astro";
+const { title, text, makrocontent, makrohref } = Astro.props;
+const { image1, image2, alt1, alt2 } = Astro.props;
 ---
 
 <BaseLayout>
-  <SectionText
-    title="Velkommen til Sorte Øje"
-    content="Nørrebros hyggeligste kaffebar"
-    bgColor="bg-gray-900"
+  <TopSection
+    title="kontakt os"
+    text="i øjet af den sorte plads og i hjertet af nørrebro finder du nørrebros hyggeligste kaffebar vi glæder os til at se dig"
+    makrocontent="menu"
+    makrohref="/menu"
+  >
+    <img
+      src="/images/butiksfront.webp"
+      alt="butiksfront"
+      class="w-full h-full object-cover"
+    />
+  </TopSection>
+  <BundFotoSection
+    image1="/images/kaffebaren.webp"
+    alt1="kaffebaren"
+    image2="/images/staystrong.webp"
+    alt2="staystrong"
   />
 </BaseLayout>

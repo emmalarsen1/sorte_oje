@@ -1,0 +1,12 @@
+---
+const { makrocontent, makrohref } = Astro.props;
+---
+
+<div class="pt-2">
+  <a
+    href={makrohref || "#"}
+    class="inline-block px-3 py-2 border border-[#81B684] text-[#81B684] rounded-md transition-colors hover:border-[#E7E7DD] hover:text-[#E7E7DD] whitespace-nowrap w-fit"
+  >
+    {makrocontent}
+  </a>
+</div>
