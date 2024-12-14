@@ -2,8 +2,56 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TopSection from "../components/TopSection.astro";
 import BundFotoSection from "../components/BundFotoSection.astro";
+import GrafikSection from "../components/GrafikSection.astro";
 const { title, text, makrocontent, makrohref } = Astro.props;
 const { image1, image2, alt1, alt2 } = Astro.props;
+const { grafiknavn, grafikalt } = Astro.props;
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <section class="px-10 pb-10 text-center">
+    <h1>menu</h1>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="pt-4">
+        <h2>kaffe:</h2>
+        <p>espresso / 25kr</p>
+        <p>filter / 28 kr</p>
+        <p>americano / 32 kr</p>
+        <p>cortado / 36 kr</p>
+        <p>flat white / 30 kr</p>
+        <p>latte / 42 kr</p>
+        <p>cappuccino / 39 kr</p>
+        <p>islatte / 42 kr</p>
+        <p>iced americano / 32 kr</p>
+        <p>+</p>
+        <p>te / 32 kr</p>
+        <p>kakao / 42 kr</p>
+        <p>chai latte / 42 kr</p>
+      </div>
+      <div class="pt-4">
+        <h2>kolde drikke:</h2>
+        <p>saft / 35 kr</p>
+        <p>soda / 35 kr</p>
+        <p>danskvand / 25 kr</p>
+        <p>cider / 45 kr</p>
+        <div class="pt-4">
+          <h2>den lille sult:</h2>
+          <p>bolle med ost / 35 kr</p>
+          <p>croissant / 35 kr</p>
+          <p>bagværk / 37 kr</p>
+          <p>skyr / 35 kr</p>
+          <p>toast / 39 kr</p>
+          <p>frugt / 7 kr</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <GrafikSection grafiknavn="/grafik/logokop.svg" grafikalt="bog" />
+  <BundFotoSection
+    image1="/images/menu/menukort.webp"
+    alt1="menukort"
+    image2="/images/menu/kagefad.webp"
+    alt2="kagefad med bagværk"
+  />
+  <GrafikSection grafiknavn="/grafik/vinyl.svg" grafikalt="bog" />
+</BaseLayout>

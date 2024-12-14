@@ -3,18 +3,18 @@ const { image1, image2, alt1, alt2 } = Astro.props;
 ---
 
 <div
-  class="sm:px-20 relative grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-[auto_1fr] sm:gap-6"
+  class="sm:px-24 pt-14 relative grid grid-cols-1 gap-4 sm:grid-cols-2 sm:grid-rows-[auto_1fr] sm:gap-6"
 >
   <!-- Første billede -->
   <img
     src={image1}
     alt={alt1 || ""}
-    class="w-2/3 h-auto object-cover ml-0 sm:w-full sm:col-span-1 sm:row-span-2"
+    class="w-2/3 max-w-lg h-auto object-cover sm:ml-6 sm:w-full sm:col-span-1 sm:row-span-2"
   />
   <!-- Andet billede -->
   <img
     src={image2}
     alt={alt2 || ""}
-    class="sm:px-8 w-3/5 h-auto object-cover ml-auto sm:w-full sm:col-start-2 sm:row-start-2 sm:mt-60"
+    class="sm:px-8 w-3/5 h-auto max-w-m object-cover ml-auto sm:w-full sm:col-start-2 sm:row-start-2 sm:mt-60"
   />
 </div>

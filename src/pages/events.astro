@@ -1,9 +1,140 @@
 ---
+import EventCard from "../components/EventCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TopSection from "../components/TopSection.astro";
-import BundFotoSection from "../components/BundFotoSection.astro";
+import GrafikSection from "../components/GrafikSection.astro";
 const { title, text, makrocontent, makrohref } = Astro.props;
-const { image1, image2, alt1, alt2 } = Astro.props;
+const { grafiknavn, grafikalt } = Astro.props;
+import { supabase } from "../lib/supabaseClient.js";
+
+interface EventData {
+  id: number;
+  name: string;
+  description: string;
+  date: string;
+  slug: string;
+  image_url: string;
+}
+
+// Hent data
+const { data: events, error } = (await supabase
+  .from("event_test")
+  .select("id, name, excerpt, description, date, slug, image_url")) as {
+  data: EventData[] | null;
+  error: any;
+};
+
+if (error) {
+  console.error("Fejl ved hentning af events:", error);
+}
+
+function formatDateToMonthYear(dateStr: string): {
+  month: string;
+  year: number;
+} {
+  const dateObj = new Date(dateStr);
+  const monthNames = [
+    "januar",
+    "februar",
+    "marts",
+    "april",
+    "maj",
+    "juni",
+    "juli",
+    "august",
+    "september",
+    "oktober",
+    "november",
+    "december",
+  ];
+  const month = monthNames[dateObj.getMonth()];
+  const year = dateObj.getFullYear();
+  return { month, year };
+}
+
+// Her sorteres events efter dato (stigende rækkefølge)
+if (events) {
+  events.sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+}
+
+const groupedEvents: Record<string, EventData[]> = {};
+
+// Her grupperes events efter måned og år
+if (events) {
+  for (const event of events) {
+    const { month, year } = formatDateToMonthYear(event.date);
+    const key = `${year}-${month}`; // Nøgle i formatet "YYYY-måned"
+    if (!groupedEvents[key]) {
+      groupedEvents[key] = [];
+    }
+    groupedEvents[key].push(event);
+  }
+}
+
+// Valgfri: Hvis du skal bruge grupperne i sorteret rækkefølge
+const sortedGroupedEvents = Object.entries(groupedEvents).sort(
+  ([keyA], [keyB]) => {
+    const [yearA, monthA] = keyA.split("-");
+    const [yearB, monthB] = keyB.split("-");
+    const monthNames = [
+      "januar",
+      "februar",
+      "marts",
+      "april",
+      "maj",
+      "juni",
+      "juli",
+      "august",
+      "september",
+      "oktober",
+      "november",
+      "december",
+    ];
+    const dateA = new Date(parseInt(yearA), monthNames.indexOf(monthA));
+    const dateB = new Date(parseInt(yearB), monthNames.indexOf(monthB));
+    return dateA.getTime() - dateB.getTime();
+  }
+);
+
+// Valgfrit: Log for at debug
+console.log("Grouped Events (Sorted):", sortedGroupedEvents);
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <div class="sm:m-16 p-8 min-h-screen">
+    <h1 class="place-self-center mb-8">kommende events:</h1>
+    {
+      Object.entries(groupedEvents).map(([key, eventsForMonth]) => {
+        const [year, month] = key.split("-");
+        return (
+          <section class="mb-12">
+            <h2 class=" place-self-center mb-4 ">
+              {month} {year}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {eventsForMonth.map((event) => (
+                <EventCard event={event} />
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+  <GrafikSection grafiknavn="/grafik/stjerne1.svg" grafikalt="stjerne" />
+  <TopSection
+    title="har du en god ide til et event?"
+    text="vi er altid åbne for gode forlsag og ideer, så hvis du går rundt med en god ide til en kunstudstilling, digtopløsning, koncert, eller noget helt fjerde, så tag endelig kontakt til os"
+    makrocontent="kontakt os"
+    makrohref="/kontakt"
+  >
+    <img
+      src="/images/events/vinglas.webp"
+      alt="champagne i vinlgas"
+      class="w-full h-full object-cover"
+    />
+  </TopSection>
+  <GrafikSection grafiknavn="/grafik/stjerne1.svg" grafikalt="stjerne" />
+</BaseLayout>

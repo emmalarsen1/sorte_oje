@@ -26,6 +26,10 @@ h6 {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 300;
   text-transform: lowercase;
+  font-size: x-large;
+}
+h1 {
+  font-size: xx-large;
 }
 
 a {

@@ -2,8 +2,46 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TopSection from "../components/TopSection.astro";
 import BundFotoSection from "../components/BundFotoSection.astro";
+import TopSectionReversed from "../components/TopSectionReversed.astro";
+import GrafikSection from "../components/GrafikSection.astro";
 const { title, text, makrocontent, makrohref } = Astro.props;
 const { image1, image2, alt1, alt2 } = Astro.props;
+const { grafiknavn, grafikalt } = Astro.props;
 ---
 
-<BaseLayout />
+<BaseLayout>
+  <h1 class="place-self-center">om os</h1>
+  <TopSection
+    title="varm atmosfære og rummelighed"
+    text="sorte øje kaffebar er et rum med plads til mangfoldighed, initiativ og kreativitet. vi elsker vores lokalområde og dyrker god kvalitet - på en måde hvor alle stadig kan være med"
+    makrocontent="kontakt os"
+    makrohref="/kontakt"
+  >
+    <img
+      src="/images/om_os/gutterbagdisken.webp"
+      alt="medarbejdere bag disken"
+      class="w-full h-full object-cover"
+    />
+  </TopSection>
+  <GrafikSection grafiknavn="/grafik/logokop.svg" grafikalt="sorte øje logo" />
+  <TopSectionReversed
+    title="bygget på fællesskab"
+    text="sorte øje er bygget på et grundlag af fællesskab, og vi ser os selv som en lille familie. vi elsker kreative sjæle og er altid åbne for en god ide til et arrangement - læs mere om det på vores event side."
+    makrocontent="kommende events"
+    makrohref="/events"
+  >
+    <img
+      src="/images/om_os/100krvaeg.webp"
+      alt="100kr kunstvæg"
+      class="w-full h-full object-cover"
+    />
+  </TopSectionReversed>
+  <GrafikSection grafiknavn="/grafik/stjerne2.svg" grafikalt="stjerne" />
+  <BundFotoSection
+    image1="/images/om_os/sonicyouth.webp"
+    alt1="kunst"
+    image2="/images/om_os/vinyler.webp"
+    alt2="vinyler til salg"
+  />
+  <GrafikSection grafiknavn="/grafik/vinyl.svg" grafikalt="vinyl grafik" />
+</BaseLayout>

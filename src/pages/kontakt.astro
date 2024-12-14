@@ -2,18 +2,21 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TopSection from "../components/TopSection.astro";
 import BtnMakro from "../components/BtnMakro.astro";
+import GrafikSection from "../components/GrafikSection.astro";
 const { title, text, makrocontent, makrohref } = Astro.props;
 const { image1, image2, alt1, alt2 } = Astro.props;
+const { grafiknavn, grafikalt } = Astro.props;
 ---
 
 <BaseLayout>
+  <h1 class="place-self-center">kontakt</h1>
   <TopSection
     title="kontakt os"
-    text="har du nogen spørgsmål er du velkommen til at kontakte os på vores mail sorteoeje@gmail.com du er også altid velkommen til at tale med os i kaffebaren om stort og småt"
+    text="har du nogen spørgsmål er du velkommen til at kontakte os på vores mail sorteoeje@gmail.com du er også altid velkommen til at tage en snak med os nede i kaffebaren om stort og småt"
   >
     <img
-      src="/images/staystrong.webp"
-      alt="staystrong"
+      src="/images/kontakt/foldere.webp"
+      alt="foldere på et bord"
       class="w-full h-full object-cover"
     />
 
@@ -25,4 +28,5 @@ const { image1, image2, alt1, alt2 } = Astro.props;
     />
     <BtnMakro slot="buttons" makrocontent="events" makrohref="/events" />
   </TopSection>
+  <GrafikSection grafiknavn="/grafik/bog.svg" grafikalt="bog" />
 </BaseLayout>

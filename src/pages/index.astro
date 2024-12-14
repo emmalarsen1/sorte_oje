@@ -2,13 +2,16 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TopSection from "../components/TopSection.astro";
 import BundFotoSection from "../components/BundFotoSection.astro";
+import GrafikSection from "../components/GrafikSection.astro";
+import TopSectionReversed from "../components/TopSectionReversed.astro";
 const { title, text, makrocontent, makrohref } = Astro.props;
 const { image1, image2, alt1, alt2 } = Astro.props;
+const { grafiknavn, grafikalt } = Astro.props;
 ---
 
 <BaseLayout>
   <TopSection
-    title="kontakt os"
+    title="nørrebros hyggeligste kaffebar"
     text="i øjet af den sorte plads og i hjertet af nørrebro finder du nørrebros hyggeligste kaffebar vi glæder os til at se dig"
     makrocontent="menu"
     makrohref="/menu"
@@ -19,10 +22,25 @@ const { image1, image2, alt1, alt2 } = Astro.props;
       class="w-full h-full object-cover"
     />
   </TopSection>
+  <GrafikSection grafiknavn="/grafik/logokop.svg" grafikalt="sorte øjes logo" />
+  <TopSectionReversed
+    title="se vores kommende events"
+    text="vi elsker at lægge hus til kreative og innovative arrangementer, og glæder os hver gang nogen kommer med en god ide. hvis du har en du brænder inde med, så tøv endelig ikke med at tage kontakt, eller tjek vores kommende events ud, og se om der er noget i din smag"
+    makrocontent="kommende events"
+    makrohref="/events"
+  >
+    <img
+      src="/images/event5.webp"
+      alt="kunder i kaffebaren"
+      class="w-full h-full object-cover"
+    />
+  </TopSectionReversed>
+  <GrafikSection grafiknavn="/grafik/stjerne1.svg" grafikalt="stjerne" />
   <BundFotoSection
-    image1="/images/kaffebaren.webp"
-    alt1="kaffebaren"
-    image2="/images/staystrong.webp"
-    alt2="staystrong"
+    image1="/images/kaffemaskine.webp"
+    alt1="kaffemaskine"
+    image2="/images/tshirt.webp"
+    alt2="sorte øje logo tshirt"
   />
+  <GrafikSection grafiknavn="/grafik/vinyl.svg" grafikalt="vinyl" />
 </BaseLayout>

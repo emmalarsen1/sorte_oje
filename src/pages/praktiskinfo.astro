@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopSection from "../components/TopSection.astro";
+import BundFotoSection from "../components/BundFotoSection.astro";
+import GrafikSection from "../components/GrafikSection.astro";
+const { title, text, makrocontent, makrohref } = Astro.props;
+const { image1, image2, alt1, alt2 } = Astro.props;
+const { grafiknavn, grafikalt } = Astro.props;
+---
+
+<BaseLayout>
+  <section class="px-10 pb-10 text-center">
+    <h1>praktisk info</h1>
+    <div class="flex flex-col gap-4 justify-center">
+      <div class="pt-4">
+        <h2>åbningstider:</h2>
+        <p>mandag / 7:30-18</p>
+        <p>tirsdag / 7:30-18</p>
+        <p>onsdag / 7:30-18</p>
+        <p>torsdag / 7:30-18</p>
+        <p>fredag / 7:30-18</p>
+        <p>lørdag / 8-18</p>
+        <p>lørdag / 8-18</p>
+      </div>
+      <div class="pt-4">
+        <h2>find os her:</h2>
+        <p>heimdalsgade 22</p>
+        <p>2200 københavn n</p>
+      </div>
+    </div>
+  </section>
+  <GrafikSection grafiknavn="/grafik/bog.svg" grafikalt="bog" />
+  <BundFotoSection
+    image1="/images/om_os/sonicyouth.webp"
+    alt1="sonic youth plakat"
+    image2="/images/event5.webp"
+    alt2="eventfoto"
+  />
+  <GrafikSection grafiknavn="/grafik/stjerne2.svg" grafikalt="bog" />
+</BaseLayout>
