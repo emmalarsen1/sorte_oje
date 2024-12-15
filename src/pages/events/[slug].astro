@@ -37,18 +37,34 @@ if (error) {
 ---
 
 <BaseLayout>
+  <!-- brødkrummesti -->
+  {
+    event && (
+      <nav aria-label="breadcrumb" class="text-sm mb-4">
+        <ul class="flex space-x-2">
+          <li>
+            <a href="/events">Events</a>
+            <span> /</span>
+          </li>
+          <li class="text-opacity-10">{event.name}</li>
+        </ul>
+      </nav>
+    )
+  }
+
   {
     event ? (
       <>
         <TopSection
           title={event.name}
           text={`${event.excerpt}\n ${event.description}\n Dato: ${event.date}`}
+          textextra={`Dato: ${event.date}`}
           makrocontent="tilbage"
           makrohref="/events"
         >
           <img
             src={event.image_url || ""}
-            alt={event.name}
+            alt={event.slug}
             class="w-full h-full object-cover"
           />
         </TopSection>

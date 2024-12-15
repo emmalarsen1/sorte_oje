@@ -4,14 +4,17 @@ import BtnMakro from "./BtnMakro.astro";
 ---
 
 <div
-  class="p-4 inline-block px-3 py-4 border bg-[#232426] border-[#E7E7DD] rounded"
+  class="flex flex-col p-4 inline-block px-3 py-4 border bg-[#232426] border-[#E7E7DD] rounded"
 >
   <img
     src={event.image_url}
-    alt={event.name}
+    alt={event.slug}
     class="w-full h-40 object-cover mb-4"
   />
   <h3 class="font-medium mb-2">{event.name}</h3>
   <p class="mb-6">{event.excerpt}</p>
-  <BtnMakro makrocontent="læs mere" makrohref={`/events/${event.slug}`} />
+  <p class="mb-6 font-normal">{`dato: ${event.date}`}</p>
+  <div class="mt-auto">
+    <BtnMakro makrocontent="læs mere" makrohref={`/events/${event.slug}`} />
+  </div>
 </div>

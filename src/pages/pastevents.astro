@@ -1,0 +1,107 @@
+---
+import EventCard from "../components/EventCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GrafikSection from "../components/GrafikSection.astro";
+import { supabase } from "../lib/supabaseClient.js";
+import BtnMakro from "../components/BtnMakro.astro";
+const { makrocontent, makrohref } = Astro.props;
+
+interface EventData {
+  id: number;
+  name: string;
+  description: string;
+  date: string;
+  slug: string;
+  image_url: string;
+}
+
+// Hent data
+const { data: events, error } = (await supabase
+  .from("event_test")
+  .select("id, name, excerpt, description, date, slug, image_url")) as {
+  data: EventData[] | null;
+  error: any;
+};
+
+if (error) {
+  console.error("Fejl ved hentning af events:", error);
+}
+
+function formatDateToMonthYear(dateStr: string): {
+  month: string;
+  year: number;
+} {
+  const dateObj = new Date(dateStr);
+  const monthNames = [
+    "januar",
+    "februar",
+    "marts",
+    "april",
+    "maj",
+    "juni",
+    "juli",
+    "august",
+    "september",
+    "oktober",
+    "november",
+    "december",
+  ];
+  const month = monthNames[dateObj.getMonth()];
+  const year = dateObj.getFullYear();
+  return { month, year };
+}
+
+// Filtrer tidligere events
+const today = new Date();
+const pastEvents = events?.filter((event) => new Date(event.date) < today);
+
+// Sorter tidligere events efter dato (faldende rækkefølge)
+if (pastEvents) {
+  pastEvents.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+const groupedPastEvents: Record<string, EventData[]> = {};
+
+// Grupper tidligere events efter måned og år
+if (pastEvents) {
+  for (const event of pastEvents) {
+    const { month, year } = formatDateToMonthYear(event.date);
+    const key = `${year}-${month}`;
+    if (!groupedPastEvents[key]) {
+      groupedPastEvents[key] = [];
+    }
+    groupedPastEvents[key].push(event);
+  }
+}
+---
+
+<BaseLayout>
+  <div class="sm:m-16 p-8 min-h-screen">
+    <h1 class="place-self-center mb-8">tidligere events:</h1>
+    {
+      Object.entries(groupedPastEvents).map(([key, eventsForMonth]) => {
+        const [year, month] = key.split("-");
+        return (
+          <>
+            <section class="mb-12">
+              <h2 class=" place-self-center mb-4 ">
+                {month} {year}
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {eventsForMonth.map((event) => (
+                  <EventCard event={event} />
+                ))}
+              </div>
+            </section>
+          </>
+        );
+      })
+    }
+    <div class="place-self-center">
+      <BtnMakro makrocontent="se kommende events" makrohref="/events" />
+    </div>
+  </div>
+  <GrafikSection grafiknavn="/grafik/stjerne2.svg" grafikalt="stjerne" />
+</BaseLayout>
