@@ -38,20 +38,13 @@ a {
   font-family: "Montserrat", sans-serif;
   text-transform: lowercase;
 }
-
-/* .container {
-  @apply max-w-6xl mx-auto px-4;
-} */
-
 .icon path {
   fill: #e7e7dd;
   transition: fill 0.3s ease;
 }
-
 .icon:hover path {
   fill: #81b684;
 }
-
 a:hover,
 .nav-item:hover {
   color: #81b684;

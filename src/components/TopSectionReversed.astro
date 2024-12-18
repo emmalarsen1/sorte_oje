@@ -12,13 +12,13 @@ import BtnMakro from "./BtnMakro.astro";
       <h2 class="text-lg sm:text-2xl mb-2">{title}</h2>
       <div class="text-sm sm:text-base pb-4">{text}</div>
 
-      <!-- Navngivet slot til knapper -->
+      <!-- Slot til knapper -->
       <slot name="buttons">
         <!-- Standardfallback-knap hvis ingen knapper leveres fra "knap-slot" -->
         <BtnMakro makrocontent={makrocontent} makrohref={makrohref} />
       </slot>
     </div>
-    <!-- Billedet -->
+    <!-- Billede -->
     <div
       class="basis-full max-w-4xl sm:basis-2/3 w-full aspect-[16/10] order-2 pt-4 sm:pt-0"
     >
